@@ -1,10 +1,12 @@
 package FamilyTree;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human {
+public class Human implements Serializable {
+    private long id;
     private String name;
     private Gender gender;
     private LocalDate birthDate;
@@ -13,7 +15,9 @@ public class Human {
     private List<Human> children;
 
 
+
     public Human(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Human father, Human mother) {
+        id = -1;
         this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
