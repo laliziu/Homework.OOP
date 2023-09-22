@@ -7,16 +7,26 @@ public class Main {
 
         FileHandler fileHandler = new FileHandler();
 
+
+
+
         FamilyTree tree = testTree();
+        Service service = new Service(tree);
         System.out.println(tree.getInfo());
 
 
+
         fileHandler.save(tree, "src/FamilyTree/tree.out");
+        System.out.println(service.getInfo());
+        service.sortByName();
+        System.out.println(service.getInfo());
+        service.sortByBirthDate();
+        System.out.println(service.getInfo());
 
     }
 
     static FamilyTree testTree() {
-        FamilyTree tree = new FamilyTree();
+        FamilyTree  tree = new FamilyTree();
 
         Human vasiliy = new Human("Василий", Gender.Male, LocalDate.of(1963, 12, 10));
         Human maria = new Human("Мария", Gender.Female, LocalDate.of(1965, 9, 15));
@@ -29,8 +39,12 @@ public class Main {
         tree.add(semyon);
         return tree;
 
+
     }
+
 //        FileHandler fileHandler = new FileHandler();
 //        FamilyTree tree = (FamilyTree)fileHandler.read("src/FamilyTree/tree.out");
 //        System.out.println(tree);
+
+
     }

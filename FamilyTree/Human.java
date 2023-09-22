@@ -167,4 +167,8 @@ public class Human implements Serializable {
         return human.getName().equals(getName());
 
     }
+
+    public long getId() {
+        return id;
+    }
 }

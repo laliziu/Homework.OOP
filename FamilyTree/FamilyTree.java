@@ -2,9 +2,10 @@ package FamilyTree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable {
+public class FamilyTree implements Serializable, Iterable<Human> {
     private long humansId;
     private List<Human> humanList;
 
@@ -51,7 +52,8 @@ public class FamilyTree implements Serializable {
         }
         return null;
     }
-    public String getInfo(){
+
+    public String getInfo() {
         StringBuilder sb = new StringBuilder();
         sb.append("В дереве");
         sb.append(humanList.size());
@@ -62,6 +64,30 @@ public class FamilyTree implements Serializable {
         }
         return sb.toString();
 
+
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new HumanIterator(humanList);
+    }
+
+    public void sortByName() {
+        humanList.sort(new HumanComparatorByName());
+    }
+
+    public void sortByBirthDate() {
+        humanList.sort(new HumanComparatorByName());
+    }
+
+    public Human getById(long id) {
+        for (Human human : humanList) {
+            if (human.getId() == id) {
+                return human;
+            }
+
+        }
+        return null;
 
     }
 }
