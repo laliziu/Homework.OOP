@@ -1,23 +1,25 @@
-package FamilyTree;
+package model.family_tree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable, Iterable<Human> {
+public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, Iterable<E> {
     private long humansId;
-    private List<Human> humanList;
+    private List<E> humanList;
 
-    public FamilyTree(List<Human> humanList) {
+    public FamilyTree(List<E> humanList) {
+
         this.humanList = humanList;
     }
 
     public FamilyTree() {
+
         this(new ArrayList<>());
     }
 
-    public boolean add(Human human) {
+    public boolean add(E human) {
         if (human == null) {
             return false;
         }
@@ -32,20 +34,20 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         return false;
     }
 
-    private void addToChildren(Human human) {
-        for (Human child : human.getChildren()) {
+    private void addToChildren(E human) {
+        for (E child : human.getChildren()) {
             child.addParent(human);
         }
     }
 
-    private void addToParents(Human human) {
-        for (Human parent : human.getParents()) {
+    private void addToParents(E human) {
+        for (E parent : human.getParents()) {
             parent.addChild(human);
         }
     }
 
-    public Human getByName(String name) {
-        for (Human human : humanList) {
+    public E getByName(String name) {
+        for (E human : humanList) {
             if (human.getName().equals(name)) {
                 return human;
             }
@@ -58,7 +60,7 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         sb.append("В дереве");
         sb.append(humanList.size());
         sb.append(" объектов: \n");
-        for (Human human : humanList) {
+        for (E human : humanList) {
             sb.append(human.getInfo());
             sb.append("\n");
         }
@@ -80,8 +82,8 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         humanList.sort(new HumanComparatorByName());
     }
 
-    public Human getById(long id) {
-        for (Human human : humanList) {
+    public E getById(long id) {
+        for (E human : humanList) {
             if (human.getId() == id) {
                 return human;
             }

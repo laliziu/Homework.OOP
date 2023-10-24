@@ -1,9 +1,7 @@
-package FamilyTree;
+package model.save;
 
 
 import java.io.Serializable;
-
-import java.io.*;
 
 public interface Writable {
     boolean save(Serializable serializable,String filePath);

@@ -1,4 +1,6 @@
-package FamilyTree;
+package model.save.base;
+
+import model.save.Writable;
 
 import java.io.*;
 
