@@ -2,7 +2,7 @@ package view;
 
 import presenter.Presenter;
 import java.util.Scanner;
-public class Console {
+public class Console implements View{
     private Presenter presenter;
     private Scanner scanner;
     private Menu menu;
