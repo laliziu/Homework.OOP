@@ -1,12 +1,12 @@
 package model.family_tree;
 
-import java.awt.*;
+import java.util.List;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public interface FamilyTreeItem<T> extends Serializable {
 
-    void setId(long id);
+
     long getId();
     T getFather();
     T getMother();
@@ -17,6 +17,7 @@ public interface FamilyTreeItem<T> extends Serializable {
     LocalDate getBirthDate();
     List<T> getParents();
     List<T> getChildren();
+    public String getInfo();
 
     }
 
