@@ -23,7 +23,7 @@ public class Main {
 
 
 
-        fileHandler.save(tree, "src/FamilyTree/tree.out");
+        fileHandler.save(tree, "src/model/Family_Tree/tree.out");
         System.out.println(service.getInfo());
         service.sortByName();
         System.out.println(service.getInfo());
