@@ -18,13 +18,7 @@ public class Main {
         Service service = new Service(tree);
         System.out.println(tree.getInfo());
 
-
-
-
-
-
-
-        fileHandler.save(tree, "src/model/Family_Tree/tree.out");
+        fileHandler.save(tree);
 
         System.out.println(service.getInfo());
         service.sortByName();
@@ -33,13 +27,14 @@ public class Main {
         System.out.println(service.getInfo());
 
         Console view = new Console();
+        view.getPresenter().setService(service);
         view.start();
     }
 
     static FamilyTree testTree() {
         FamilyTree tree = new FamilyTree();
 
-        Human nikita = new Human("Никита", Gender.Male, LocalDate.of(1962, 12, 10));
+        Human nikita = new Human("Никита Матвеенко", Gender.Male, LocalDate.of(1962, 12, 10));
         Human maria = new Human("Мария", Gender.Female, LocalDate.of(1961, 9, 15));
         tree.add(nikita);
         tree.add(maria);
@@ -49,12 +44,5 @@ public class Main {
         tree.add(alisa);
         tree.add(semyon);
         return tree;
-
-
     }
-
-    //        FileHandler fileHandler = new FileHandler();
-//        FamilyTree tree = (FamilyTree)fileHandler.read("src/FamilyTree/tree.out");
-//        System.out.println(tree);
-
 }

@@ -6,7 +6,8 @@ import java.io.*;
 
 public class FileHandler implements Writable {
     @Override
-    public  boolean save(Serializable serializable, String filePath){
+    public  boolean save(Serializable serializable){
+        String filePath = "src/model/save/base/tree.out";
         try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath))){
             objectOutputStream.writeObject(serializable);
             return true;
@@ -16,7 +17,8 @@ public class FileHandler implements Writable {
         }
     }
 @Override
-    public  Object read(String filePath){
+    public  Object read(){
+    String filePath = "src/model/save/base/tree.out";
         try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath))) {
             return objectInputStream.readObject();
         } catch (Exception e){

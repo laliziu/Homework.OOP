@@ -4,6 +4,7 @@ import model.family_tree.FamilyTreeItem;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +55,22 @@ public class Human implements Serializable, FamilyTreeItem<Human> {
         return name;
     }
 
+    public int getAge() {
+        LocalDate date1 = this.birthDate;
+        LocalDate date2 = LocalDate.now();
+        if (this.deathDate != null) {
+            date2 = this.deathDate;
+        }
+            long years = date1.until(date2, ChronoUnit.YEARS);
+        return Math.toIntExact(years);
+    }
+
     public Gender getGender() {
         return gender;
     }
-
+    public void setFullname(String fullname) {
+        this.name = fullname;
+    }
     public boolean addParent(Human parent) {
         if (!parents.contains(parent)) {
             children.add(parent);
@@ -69,6 +82,24 @@ public class Human implements Serializable, FamilyTreeItem<Human> {
     public LocalDate getBirthDate() {
         return birthDate;
     }
+
+    public void setBirthDate(int birthY, int birthM, int birthD){
+        this.birthDate = LocalDate.of(birthY, birthM, birthD);
+    }
+    public void setEndLifeDate(int endlifeY, int endlifeM, int endlifeD){
+        this.deathDate = LocalDate.of(endlifeY,endlifeM,endlifeD);
+    }
+
+    public void setChildren(Human children) {
+        this.children.add(children);
+    }
+
+    public void setParents(Human parents) {
+        this.parents.add(parents);
+    }
+
+
+
 
     public LocalDate getDeathDate() {
         return deathDate;
@@ -105,6 +136,8 @@ public class Human implements Serializable, FamilyTreeItem<Human> {
         this.deathDate = deathDate;
     }
 
+
+
     @Override
     public String toString() {
         return getInfo();
@@ -115,6 +148,10 @@ public class Human implements Serializable, FamilyTreeItem<Human> {
         sb.append("имя: ");
         sb.append(name);
         sb.append(", ");
+        sb.append(getBirthDate());
+        sb.append(",");
+        sb.append(getDeathDate());
+        sb.append(",");
         sb.append(getMotherInfo());
         sb.append(", ");
         sb.append(getFatherInfo());
